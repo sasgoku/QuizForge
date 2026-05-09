@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizForge — Build & Share Quizzes</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body class="landing-body">
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Quiz<span>Forge</span></a>
+      <a href="teacher.html" class="btn btn-outline-nav">Teacher Panel →</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">100% Free · No Login Required</div>
+      <h1 class="hero-title">Create, Share &amp;<br />Grade Quizzes<br /><span class="accent-text">Instantly.</span></h1>
+      <p class="hero-subtitle">
+        Paste JSON → Get a shareable quiz link. Students attempt it, scores are saved automatically. Built for teachers who value simplicity.
+      </p>
+      <div class="hero-actions">
+        <a href="teacher.html" class="btn btn-primary btn-lg">Start as Teacher</a>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">JSON</span><span class="stat-label">Driven</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">Real‑time</span><span class="stat-label">Results</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">Zero</span><span class="stat-label">Setup</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="demo-card">
+        <div class="demo-card-header">
+          <div class="demo-dot red"></div>
+          <div class="demo-dot yellow"></div>
+          <div class="demo-dot green"></div>
+          <span class="demo-label">quiz.html?id=abc123</span>
+        </div>
+        <div class="demo-card-body">
+          <div class="demo-question">What is a singleton set?</div>
+          <div class="demo-options">
+            <div class="demo-option">A set with no elements</div>
+            <div class="demo-option demo-selected">A set with exactly one element ✓</div>
+            <div class="demo-option">A set with infinite elements</div>
+          </div>
+          <div class="demo-progress">
+            <div class="demo-progress-bar" style="width: 60%"></div>
+          </div>
+          <div class="demo-progress-label">Question 3 of 5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">WORKFLOW</div>
+      <h2 class="section-title">Three steps. That's all.</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">📝</div>
+          <h3>Paste Your JSON</h3>
+          <p>Write your quiz questions in the simple JSON format and paste into the Teacher Panel.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">🔗</div>
+          <h3>Share the Link</h3>
+          <p>Get a unique quiz URL instantly. Share it with students via WhatsApp, email, or anywhere.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">📊</div>
+          <h3>View Results</h3>
+          <p>Watch scores appear in real-time as students submit. View detailed result tables anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON Format Preview -->
+  <section class="json-section">
+    <div class="section-inner">
+      <div class="section-label">FORMAT</div>
+      <h2 class="section-title">Simple JSON structure</h2>
+      <div class="json-split">
+        <div class="json-info">
+          <p>Write your quiz as a JSON object with a title and a list of questions. Each question supports a correct answer and an optional explanation shown after submission.</p>
+          <ul class="json-features">
+            <li>✦ Single choice questions</li>
+            <li>✦ Automatic scoring</li>
+            <li>✦ Per-question explanations</li>
+            <li>✦ Unlimited questions</li>
+          </ul>
+          <a href="teacher.html" class="btn btn-primary">Open Teacher Panel →</a>
+        </div>
+        <div class="json-code-block">
+          <div class="code-header">quiz.json</div>
+          <pre class="code-content">{
+  "title": "Math Quiz",
+  "questions": [
+    {
+      "type": "single_choice",
+      "question": "What is a singleton set?",
+      "options": [
+        "A set with no elements",
+        "A set with exactly one element",
+        "A set with infinite elements"
+      ],
+      "correct": "A set with exactly one element",
+      "explanation": "A singleton set contains exactly one element."
+    }
+  ]
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo">Quiz<span>Forge</span></span>
+      <p>Built with Firebase Firestore. Free &amp; open to use.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

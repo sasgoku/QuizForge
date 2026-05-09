@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz — QuizForge</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body class="app-body quiz-body">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-app">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Quiz<span>Forge</span></a>
+      <span id="quizTitleNav" class="nav-page-label"></span>
+    </div>
+  </nav>
+
+  <div class="quiz-container">
+
+    <!-- LOADING STATE -->
+    <div id="quizLoading" class="state-center">
+      <div class="spinner spinner-lg"></div>
+      <p>Loading quiz…</p>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div id="quizError" class="state-center hidden">
+      <div class="state-icon-lg">⚠️</div>
+      <h2>Quiz Not Found</h2>
+      <p>This quiz link is invalid or has been deleted.</p>
+      <a href="index.html" class="btn btn-primary">Go Home</a>
+    </div>
+
+    <!-- NAME ENTRY GATE -->
+    <div id="nameGate" class="name-gate hidden">
+      <div class="name-gate-card">
+        <div class="name-gate-icon">🎯</div>
+        <h2 id="nameGateTitle" class="name-gate-title">Loading…</h2>
+        <p class="name-gate-subtitle">Enter your name to begin the quiz.</p>
+        <div class="field-group">
+          <label class="field-label" for="studentName">Your Name</label>
+          <input
+            type="text"
+            id="studentName"
+            class="text-input"
+            placeholder="e.g. Arjun Sharma"
+            autocomplete="off"
+          />
+          <div id="nameError" class="field-error hidden">Please enter your name.</div>
+        </div>
+        <button class="btn btn-primary btn-block" id="startQuizBtn">Start Quiz →</button>
+        <p class="name-gate-note">
+          <span id="questionCount"></span> questions · Your score will be saved automatically.
+        </p>
+      </div>
+    </div>
+
+    <!-- QUIZ QUESTIONS -->
+    <div id="quizMain" class="quiz-main hidden">
+
+      <!-- Progress Bar -->
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-meta">
+          <span id="progressLabel">Question 1 of 10</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="quiz-progress-bar-track">
+          <div id="progressBar" class="quiz-progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div id="questionCard" class="question-card">
+        <div class="question-number-badge" id="questionBadge">Q1</div>
+        <h2 class="question-text" id="questionText">Question text here</h2>
+        <div class="options-list" id="optionsList"></div>
+        <div id="questionWarning" class="field-error hidden">Please select an answer.</div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="quiz-nav">
+        <button class="btn btn-ghost" id="prevBtn">← Previous</button>
+        <button class="btn btn-primary" id="nextBtn">Next →</button>
+        <button class="btn btn-success hidden" id="submitBtn">Submit Quiz ✓</button>
+      </div>
+
+      <!-- Question Dot Navigation -->
+      <div class="dot-nav" id="dotNav"></div>
+
+    </div>
+
+    <!-- RESULTS VIEW -->
+    <div id="quizResult" class="quiz-result hidden">
+      <div class="result-card">
+        <div class="result-trophy" id="resultTrophy">🏆</div>
+        <h2 class="result-name" id="resultName">Well done!</h2>
+        <div class="result-score-ring">
+          <span class="result-score-num" id="resultScoreNum">0</span>
+          <span class="result-score-total" id="resultScoreTotal">/ 10</span>
+        </div>
+        <div class="result-percent" id="resultPercent">0%</div>
+        <div class="result-grade" id="resultGrade">Grade: A</div>
+
+        <!-- Per-question Review -->
+        <div class="review-section">
+          <h3 class="review-heading">Answer Review</h3>
+          <div id="reviewList" class="review-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- App scripts -->
+  <script src="js/firebase.js"></script>
+  <script src="js/quiz.js"></script>
+
+</body>
+</html>
