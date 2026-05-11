@@ -1367,74 +1367,82 @@ img { max-width: 100%; }
 
 .qr-status-icon { font-size: 11px; }
 
-/* Options grid inside each question review */
-.qr-options {
+/* Answer Comparison Rows inside each question review */
+/* Container for the two rows */
+.qr-answers-body {
   padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
-.qr-option {
+/* Base row shared by student-answer and correct-answer rows */
+.qr-answer-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 12px;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
-  color: var(--gray-600);
-  background: var(--white);
-  border: 1.5px solid var(--gray-200);
-  transition: all var(--transition);
+  border: 1.5px solid transparent;
+  min-height: 44px;
 }
 
-/* Correct answer (not selected by student) — green outline */
-.qr-opt-correct {
-  border-color: var(--green);
-  background: #F0FDF4;
-  color: #065F46;
-}
-
-/* Correct answer AND student selected it — solid green */
-.qr-opt-correct-selected {
-  border-color: var(--green);
-  background: var(--green-light);
-  color: #065F46;
-  font-weight: 600;
-}
-
-/* Student selected this but it's WRONG — red */
-.qr-opt-wrong-selected {
-  border-color: var(--red);
-  background: var(--red-light);
-  color: #991B1B;
-  font-weight: 500;
-}
-
-/* Selection indicator dot */
-.qr-selected-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--blue);
+/* Left label: "Student's Answer" or "Correct Answer" */
+.qr-answer-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  min-width: 115px;
   flex-shrink: 0;
 }
 
-.qr-dot-empty {
-  background: transparent;
-  border: 1.5px solid var(--gray-300);
+/* The answer text itself */
+.qr-answer-value {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
-/* ✓ / ✗ icon at the end of an option */
-.opt-icon {
-  margin-left: auto;
-  font-size: 12px;
+/* Tick or cross icon on the right */
+.qr-answer-indicator {
+  font-size: 15px;
   font-weight: 700;
   flex-shrink: 0;
+  min-width: 18px;
+  text-align: center;
 }
 
-.opt-icon-correct { color: var(--green); }
-.opt-icon-wrong   { color: var(--red); }
+/* Student picked the CORRECT answer: green row */
+.qr-answer-selected-correct {
+  background: #F0FDF4;
+  border-color: rgba(16,185,129,0.35);
+}
+.qr-answer-selected-correct .qr-answer-label     { color: #065F46; }
+.qr-answer-selected-correct .qr-answer-value     { color: #065F46; }
+.qr-answer-selected-correct .qr-answer-indicator { color: var(--green); }
+
+/* Student picked a WRONG answer: red row */
+.qr-answer-selected-wrong {
+  background: #FFF5F5;
+  border-color: rgba(239,68,68,0.3);
+}
+.qr-answer-selected-wrong .qr-answer-label     { color: #991B1B; }
+.qr-answer-selected-wrong .qr-answer-value     { color: #991B1B; font-weight: 600; }
+.qr-answer-selected-wrong .qr-answer-indicator { color: var(--red); }
+
+/* Correct answer row (only shown when student was wrong): green tint */
+.qr-answer-correct {
+  background: #F0FDF4;
+  border-color: rgba(16,185,129,0.25);
+}
+.qr-answer-correct .qr-answer-label { color: #065F46; }
+.qr-answer-correct .qr-answer-value { color: #065F46; }
+.qr-ind-correct { color: var(--green); }
 
 /* Explanation block */
 .qr-explanation {
