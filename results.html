@@ -38,7 +38,7 @@
     <!-- RESULTS CONTENT -->
     <div id="resultsContent" class="hidden">
 
-      <!-- Header -->
+      <!-- Page Header -->
       <div class="results-header">
         <div>
           <div class="section-label">RESULTS</div>
@@ -47,12 +47,13 @@
         </div>
         <div class="results-header-actions">
           <button class="btn btn-ghost" id="refreshBtn">↻ Refresh</button>
+          <button class="btn btn-ghost" id="expandAllBtn">Expand All</button>
           <button class="btn btn-primary" id="exportCsvBtn">Export CSV</button>
         </div>
       </div>
 
-      <!-- Summary Stats -->
-      <div class="stats-row" id="statsRow">
+      <!-- Summary Stats Row -->
+      <div class="stats-row">
         <div class="stat-card">
           <div class="stat-card-num" id="statTotal">0</div>
           <div class="stat-card-label">Submissions</div>
@@ -63,11 +64,32 @@
         </div>
         <div class="stat-card">
           <div class="stat-card-num" id="statHighest">—</div>
-          <div class="stat-card-label">Highest Score</div>
+          <div class="stat-card-label">Highest</div>
         </div>
         <div class="stat-card">
           <div class="stat-card-num" id="statLowest">—</div>
-          <div class="stat-card-label">Lowest Score</div>
+          <div class="stat-card-label">Lowest</div>
+        </div>
+      </div>
+
+      <!-- Search + Sort Toolbar -->
+      <div id="resultsToolbar" class="results-toolbar hidden">
+        <input
+          type="text"
+          id="searchInput"
+          class="text-input search-input"
+          placeholder="🔍  Search by student name…"
+          autocomplete="off"
+        />
+        <div class="sort-group">
+          <label class="sort-label" for="sortSelect">Sort</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="date-desc">Latest first</option>
+            <option value="date-asc">Oldest first</option>
+            <option value="score-desc">Highest score</option>
+            <option value="score-asc">Lowest score</option>
+            <option value="name-asc">Name A–Z</option>
+          </select>
         </div>
       </div>
 
@@ -81,25 +103,16 @@
         </div>
       </div>
 
-      <!-- Results Table -->
-      <div id="tableWrap" class="table-wrap hidden">
-        <table class="results-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Student Name</th>
-              <th>Score</th>
-              <th>Percentage</th>
-              <th>Grade</th>
-              <th>Submitted At</th>
-            </tr>
-          </thead>
-          <tbody id="resultsTableBody"></tbody>
-        </table>
+      <!-- No search match message -->
+      <div id="noSearchMatch" class="state-box hidden">
+        <div class="state-icon">🔍</div>
+        <p id="noSearchMatchText">No students match your search.</p>
       </div>
 
-    </div>
+      <!-- Student Accordion List -->
+      <div id="studentList" class="student-list hidden"></div>
 
+    </div>
   </div>
 
   <!-- Firebase SDK -->

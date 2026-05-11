@@ -249,12 +249,16 @@ submitBtn.addEventListener('click', async () => {
   const total   = quizData.questions.length;
   const percent = Math.round((score / total) * 100);
 
-  // Build answers array for storage
+  // Build complete per-question answer record for Firestore
+  // Includes all fields needed for teacher review on results page
   const answersRecord = quizData.questions.map((q, i) => ({
-    question: q.question,
-    selected: answers[i] || 'Not answered',
-    correct:  q.correct,
-    isCorrect: answers[i] === q.correct
+    questionNumber: i + 1,
+    question:       q.question,
+    options:        q.options || [],
+    selected:       answers[i] || 'Not answered',
+    correct:        q.correct,
+    isCorrect:      answers[i] === q.correct,
+    explanation:    q.explanation || ''
   }));
 
   try {

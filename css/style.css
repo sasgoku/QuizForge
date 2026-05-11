@@ -981,49 +981,19 @@ img { max-width: 100%; }
 
 .stat-card-label { font-size: 12px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Results Table */
-.table-wrap {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-
-.results-table { width: 100%; border-collapse: collapse; }
-
-.results-table thead {
-  background: var(--navy);
-}
-
-.results-table th {
-  padding: 14px 18px;
-  text-align: left;
-  font-family: 'Sora', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--gray-400);
-}
-
-.results-table td {
-  padding: 14px 18px;
-  font-size: 14px;
-  color: var(--gray-700);
-  border-bottom: 1px solid var(--gray-100);
-}
-
-.results-table tbody tr:hover { background: var(--gray-50); }
-.results-table tbody tr:last-child td { border-bottom: none; }
-
+/* Grade badges — used in accordion headers */
 .grade-badge {
-  display: inline-block;
-  padding: 2px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 3px 10px;
   border-radius: 100px;
   font-size: 11px;
   font-weight: 700;
   font-family: 'Sora', sans-serif;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
 }
 
 .grade-a { background: var(--green-light); color: #065F46; }
@@ -1040,6 +1010,449 @@ img { max-width: 100%; }
   margin-right: auto;
 }
 
+/* ─── Results Toolbar (search + sort) ────────────────── */
+.results-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  outline: none;
+  color: var(--navy);
+  background: var(--white);
+  transition: border-color var(--transition);
+}
+
+.search-input:focus { border-color: var(--blue); }
+
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.sort-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  font-family: 'Sora', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.sort-select {
+  padding: 9px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.sort-select:focus { border-color: var(--blue); }
+
+/* ─── Student Accordion List ─────────────────────────── */
+.student-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Individual Student Card ────────────────────────── */
+.student-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.student-card:hover {
+  border-color: var(--gray-300);
+  box-shadow: var(--shadow);
+}
+
+.student-card.expanded {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-glow), var(--shadow);
+}
+
+/* ─── Card Header (always visible) ───────────────────── */
+.student-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  gap: 12px;
+  transition: background var(--transition);
+}
+
+.student-card-header:hover { background: var(--gray-50); }
+.student-card.expanded .student-card-header { background: var(--gray-50); }
+
+/* left side: avatar + name + date */
+.sc-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.sc-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: var(--white);
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sc-info { min-width: 0; }
+
+.sc-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sc-meta {
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-top: 1px;
+}
+
+/* right side: pills + score ring + grade + chevron */
+.sc-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.sc-mini-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mini-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pill-correct { background: var(--green-light); color: #065F46; }
+.pill-wrong   { background: var(--red-light);   color: #991B1B; }
+
+.sc-score-ring {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-family: 'Sora', sans-serif;
+}
+
+.sc-score-ring.ring-green { background: var(--green-light); }
+.sc-score-ring.ring-yellow { background: #FEF3C7; }
+.sc-score-ring.ring-red   { background: var(--red-light); }
+
+.sc-score-num {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ring-green .sc-score-num { color: #065F46; }
+.ring-yellow .sc-score-num { color: #92400E; }
+.ring-red .sc-score-num   { color: #991B1B; }
+
+.sc-score-denom {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.65;
+}
+
+.ring-green .sc-score-denom { color: #065F46; }
+.ring-yellow .sc-score-denom { color: #92400E; }
+.ring-red .sc-score-denom   { color: #991B1B; }
+
+/* Animated chevron */
+.sc-chevron {
+  color: var(--gray-400);
+  transition: transform var(--transition), color var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.student-card.expanded .sc-chevron {
+  transform: rotate(180deg);
+  color: var(--blue);
+}
+
+/* ─── Card Body (collapsible) ────────────────────────── */
+.student-card-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: 1px solid transparent;
+}
+
+.student-card.expanded .student-card-body {
+  grid-template-rows: 1fr;
+  border-top-color: var(--gray-200);
+}
+
+/* Inner wrapper needed for grid-template-rows animation */
+.student-card-body-inner {
+  overflow: hidden;
+}
+
+/* Score progress bar inside card */
+.sc-progress-wrap {
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50);
+}
+
+.sc-progress-track {
+  flex: 1;
+  height: 8px;
+  background: var(--gray-200);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sc-progress-fill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sc-progress-fill.ring-green  { background: linear-gradient(90deg, var(--green), #34D399); }
+.sc-progress-fill.ring-yellow { background: linear-gradient(90deg, var(--yellow), #FCD34D); }
+.sc-progress-fill.ring-red    { background: linear-gradient(90deg, var(--red), #F87171); }
+
+.sc-progress-label {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  color: var(--gray-500);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sc-no-detail {
+  padding: 20px;
+  font-size: 13px;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+/* ─── Question Review List ───────────────────────────── */
+.question-review-list {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Individual question review block */
+.question-review-item {
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.question-review-item.qr-correct { border-color: rgba(16,185,129,0.3); }
+.question-review-item.qr-wrong   { border-color: rgba(239,68,68,0.3); }
+
+/* Header row: question text + status badge */
+.qr-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 10px;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.qr-correct .qr-header { background: #F0FDF4; border-bottom-color: rgba(16,185,129,0.15); }
+.qr-wrong   .qr-header { background: #FFF5F5; border-bottom-color: rgba(239,68,68,0.15); }
+
+.qr-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.qr-number {
+  font-family: 'Sora', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  background: var(--navy);
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.qr-question-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.45;
+}
+
+/* Status badge: ✓ Correct / ✗ Incorrect */
+.qr-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.qr-status-badge.qr-correct { background: var(--green-light); color: #065F46; }
+.qr-status-badge.qr-wrong   { background: var(--red-light);   color: #991B1B; }
+
+.qr-status-icon { font-size: 11px; }
+
+/* Options grid inside each question review */
+.qr-options {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qr-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--gray-600);
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  transition: all var(--transition);
+}
+
+/* Correct answer (not selected by student) — green outline */
+.qr-opt-correct {
+  border-color: var(--green);
+  background: #F0FDF4;
+  color: #065F46;
+}
+
+/* Correct answer AND student selected it — solid green */
+.qr-opt-correct-selected {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: #065F46;
+  font-weight: 600;
+}
+
+/* Student selected this but it's WRONG — red */
+.qr-opt-wrong-selected {
+  border-color: var(--red);
+  background: var(--red-light);
+  color: #991B1B;
+  font-weight: 500;
+}
+
+/* Selection indicator dot */
+.qr-selected-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+.qr-dot-empty {
+  background: transparent;
+  border: 1.5px solid var(--gray-300);
+}
+
+/* ✓ / ✗ icon at the end of an option */
+.opt-icon {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.opt-icon-correct { color: var(--green); }
+.opt-icon-wrong   { color: var(--red); }
+
+/* Explanation block */
+.qr-explanation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 14px 12px;
+  padding: 10px 12px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: #92400E;
+  line-height: 1.5;
+}
+
+.qr-explanation-icon { flex-shrink: 0; font-size: 13px; }
+
 /* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero {
@@ -1055,27 +1468,56 @@ img { max-width: 100%; }
   .demo-card { max-width: 360px; }
 
   .steps-grid { grid-template-columns: 1fr; }
-
   .json-split { grid-template-columns: 1fr; }
-
   .app-layout { grid-template-columns: 1fr; }
-
   .stats-row { grid-template-columns: repeat(2, 1fr); }
-
   .results-header { flex-direction: column; }
+  .results-header-actions { flex-wrap: wrap; }
+
+  /* Accordion: hide pills on mid-size screens */
+  .sc-mini-pills { display: none; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .panel { padding: 20px 16px; }
   .question-card { padding: 20px 16px; }
   .quiz-nav { justify-content: center; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .result-score-num { font-size: 36px; }
-  .results-table th, .results-table td { padding: 10px 12px; font-size: 13px; }
+
+  /* Accordion mobile layout */
+  .student-card-header { padding: 12px 14px; gap: 8px; }
+  .sc-avatar { width: 34px; height: 34px; font-size: 13px; }
+  .sc-name { font-size: 14px; }
+  .sc-right { gap: 6px; }
+  .sc-score-ring { padding: 5px 9px; }
+  .sc-score-num { font-size: 15px; }
+  .sc-score-denom { font-size: 11px; }
+
+  /* Toolbar stacks vertically */
+  .results-toolbar { flex-direction: column; align-items: stretch; }
+  .search-input { min-width: unset; }
+  .sort-group { justify-content: flex-end; }
+
+  /* Question review: stack header */
+  .qr-header { flex-direction: column; gap: 6px; }
+  .qr-status-badge { align-self: flex-start; }
+
+  /* Shrink progress bar in card */
+  .sc-progress-wrap { padding: 10px 14px; }
+  .sc-progress-label { font-size: 11px; }
+
+  /* Review list tighter */
+  .question-review-list { padding: 12px 14px 16px; }
 }
 
 @media (max-width: 400px) {
   .hero-title { font-size: 34px; }
   .name-gate-card { padding: 28px 20px; }
   .result-card { padding: 28px 20px; }
+
+  /* Accordion ultra-compact */
+  .sc-avatar { display: none; }
+  .results-header-actions { gap: 6px; }
+  .results-header-actions .btn { padding: 8px 12px; font-size: 12px; }
 }
