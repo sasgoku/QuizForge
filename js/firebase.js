@@ -6,13 +6,13 @@
 // Get them from: Firebase Console → Project Settings → General
 // =====================================================
 
-const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_AUTH_DOMAIN",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId:             "YOUR_APP_ID"
+const firebaseConfig = {  
+  apiKey: "AIzaSyBNZ1Vt2iks_jARL1VQS8Em8zQyo8apK4I",
+  authDomain: "quizforge-d1f34.firebaseapp.com",
+  projectId: "quizforge-d1f34",
+  storageBucket: "quizforge-d1f34.firebasestorage.app",
+  messagingSenderId: "120187779640",
+  appId: "1:120187779640:web:12ad321be5bb9fa7bd44cd"
 };
 
 // Initialize Firebase App
